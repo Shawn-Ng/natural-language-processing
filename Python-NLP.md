@@ -1,9 +1,5 @@
 # Natural Language Processing Fundamentals in Python
 
-Editor: Shawn Ng<br>
-Content Author: **Katharine Jarmul**<br>
-[Site](https://www.datacamp.com/courses/natural-language-processing-fundamentals-in-python)<br>
-
 1. [Regular expressions & word tokenization](#1-regular-expressions-word-tokenization)
     - re.split() and re.findall()
     - Word tokenization with NLTK
@@ -210,14 +206,14 @@ bow_doc = sorted(text, key=lambda w: w[1], reverse=True)
 # Print the top 5 words of the document alongside the count
 for word_id, word_count in bow_doc[:5]:
   print(dictionary.get(word_id), word_count)
-  
+
 # Create the defaultdict: total_word_count
 total_word_count = defaultdict(int)
 for word_id, word_count in itertools.chain.from_iterable(corpus):
   total_word_count[word_id] += word_count
 
 # Create a sorted list from the defaultdict: sorted_word_count
-sorted_word_count = sorted(total_word_count.items(), key=lambda w: w[1], reverse=True) 
+sorted_word_count = sorted(total_word_count.items(), key=lambda w: w[1], reverse=True)
 
 # Print the top 5 words across all documents alongside the count
 for word_id, word_count in sorted_word_count[:5]:
@@ -260,7 +256,7 @@ sentences = nltk.sent_tokenize(article)
 token_sentences = [nltk.word_tokenize(sent) for sent in sentences]
 
 # Tag each tokenized sentence into parts of speech: pos_sentences
-pos_sentences = [nltk.pos_tag(sent) for sent in token_sentences] 
+pos_sentences = [nltk.pos_tag(sent) for sent in token_sentences]
 
 # Create the named entity chunks: chunked_sentences
 chunked_sentences = nltk.ne_chunk_sents(pos_sentences, binary=True)
@@ -282,7 +278,7 @@ for sent in chunked_sentences:
   for chunk in sent:
     if hasattr(chunk, 'label'):
       ner_categories[chunk.label()] += 1
-            
+
 # Create a list from the dictionary keys for the chart labels: labels
 labels = list(ner_categories.keys())
 
@@ -329,7 +325,7 @@ entities = [(ent.tag, ' '.join(ent)) for ent in txt.entities]
 ### NER via ensemble model
 ```python
 # Create a set of spaCy entities keeping only their text: spacy_ents
-spacy_ents = {e.text for e in doc.ents} 
+spacy_ents = {e.text for e in doc.ents}
 
 # Create a set of the intersection between the spacy and polyglot entities: ensemble_ents
 # polyglot entities: poly_ents
@@ -366,10 +362,10 @@ X_train, X_test, y_train, y_test = train_test_split(df['text'], y, test_size=0.3
 # Initialize a CountVectorizer object: count_vectorizer
 count_vectorizer = CountVectorizer(stop_words='english')
 
-# Transform the training data using only the 'text' column values: count_train 
+# Transform the training data using only the 'text' column values: count_train
 count_train = count_vectorizer.fit_transform(X_train)
 
-# Transform the test data using only the 'text' column values: count_test 
+# Transform the test data using only the 'text' column values: count_test
 count_test = count_vectorizer.transform(X_test)
 
 # Print the first 10 features of the count_vectorizer
@@ -384,10 +380,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 # Initialize a TfidfVectorizer object: tfidf_vectorizer
 tfidf_vectorizer = TfidfVectorizer(stop_words='english', max_df=0.7)
 
-# Transform the training data: tfidf_train 
+# Transform the training data: tfidf_train
 tfidf_train = tfidf_vectorizer.fit_transform(X_train)
 
-# Transform the test data: tfidf_test 
+# Transform the test data: tfidf_test
 tfidf_test = tfidf_vectorizer.transform(X_test)
 
 # Print the first 10 features
