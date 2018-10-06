@@ -21,7 +21,7 @@
 ## 2. Character Escapes
 | Escaped Char | Description |
 | --- | --- |
-| `ordinary characters` | Characters other than .$^{[(\|)]}*+?\ match themselves. |
+| ordinary characters | Characters other than `.$^{[(\|)]}*+?\` match themselves. |
 | `\a`	| Matches a bell (alarm) \u0007. |
 | `\b`	| Matches a backspace \u0008 if in a []; otherwise matches a word boundary  (between \w and \W characters). |
 | `\t`	| Matches a tab \u0009. |
@@ -45,9 +45,9 @@
 | `[0-9a-fA-F]` |	Use of a hyphen (–) allows specification of contiguous character ranges. |
 | `\p{name}`	| Matches any character in the named character class specified by {name}. Supported names are Unicode groups and block ranges. For example, Ll, Nd, Z, IsGreek, IsBoxDrawing. |
 | `\P{name}`	| Matches text not included in groups and block ranges specified in {name}. |
-| `\w`	| Matches any word character. Equivalent to the Unicode character categories [\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}\p{Pc}]. If ECMAScript-compliant behavior is specified with the ECMAScript option, \w is equivalent to [a-zA-Z_0-9]. |
-| `\W`	| Matches any nonword character. Equivalent to the Unicode categories [^\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}\p{Pc}]. If ECMAScript-compliant behavior is specified with the ECMAScript option, \W is equivalent to [^a-zA-Z_0-9]. |
-| `\s`	| Matches any white-space character. Equivalent to the Unicode character categories [\f\n\r\t\v\x85\p{Z}]. If ECMAScript-compliant behavior is specified with the ECMAScript option, \s is equivalent to [ \f\n\r\t\v]. |
-| `\S`	| Matches any non-white-space character. Equivalent to the Unicode character categories [^\f\n\r\t\v\x85\p{Z}]. If ECMAScript-compliant behavior is specified with the ECMAScript option, \S is equivalent to [^ \f\n\r\t\v]. |
-| `\d`	| Matches any decimal digit. Equivalent to \p{Nd} for Unicode and [0-9] for non-Unicode, ECMAScript behavior. |
-| `\D`	| Matches any nondigit. Equivalent to \P{Nd} for Unicode and [^0-9] for non-Unicode, ECMAScript behavior. |
+| `\w`	| Matches any word character. \w is equivalent to [a-zA-Z_0-9]. |
+| `\W`	| Matches any nonword character. \W is equivalent to [^a-zA-Z_0-9]. |
+| `\s`	| Matches any white-space character. |
+| `\S`	| Matches any non-white-space character. |
+| `\d`	| Matches any decimal digit. |
+| `\D`	| Matches any nondigit. |
