@@ -1,53 +1,62 @@
 # Regular expression
-1. [Metacharacter](#)
-2. [Character Escapes](#)
-3. [Character Classes](#)
+1. [Special characters](#1-special-characters)
+2. [Character Escapes](#2-character-escapes)
+3. [Character Classes](#3-character-classes)
+4. [Sets](#4-sets)
 
-## 1. Metacharacter
+## 1. Special characters
 | Mchar | Definition |
 | --- | --- |
-| `^` |	Start of a string. |
-| `$` |	End of a string. |
-| `.` |	Any character (except \n newline) |
-| &#x7c; | Alternation. |
-| `{...}` |	Explicit quantifier notation. |
-| `[...]` |	Explicit set of characters to match. |
-| `(...)` |	Logical grouping of part of an expression. |
-| `*`	| 0 or more of previous expression.
-| `+`	| 1 or more of previous expression.
-| `?` |	0 or 1 of previous expression; also forces minimal matching when an expression might match several strings within a search string. |
-| `\` |	Preceding one of the above, it makes it a literal instead of a special character. Preceding a special matching character, see below. |
+| `^` |	Start of a string |
+| `$` |	End of a string |
+| `.`   | Matches any character except `\n` newline |
+| &#x7c; | Alternation |
+| `*` | 0 or more of previous expression |
+| `+` | 1 or more of previous expression |
+| `?` | 0 or 1 of previous expression; also forces minimal matching when an expression might match several strings within a search string |
+| `\` | Preceding one of the above, it makes it a literal instead of a special character |
+| `{m,n}` | Matches the expression to its left `m` to `n` times, and not less |
+| `{m,n}?` | Matches the expression to its left `m` times, and ignores `n` |
 
 ## 2. Character Escapes
 | Escaped Char | Description |
 | --- | --- |
-| ordinary characters | Characters other than `.$^{[(\|)]}*+?\` match themselves. |
-| `\a`	| Matches a bell (alarm) \u0007. |
-| `\b`	| Matches a backspace \u0008 if in a []; otherwise matches a word boundary  (between \w and \W characters). |
-| `\t`	| Matches a tab \u0009. |
-| `\r`	| Matches a carriage return \u000D. |
-| `\v`	| Matches a vertical tab \u000B. |
-| `\f`	| Matches a form feed \u000C. |
-| `\n`	| Matches a new line \u000A. |
-| `\e`	| Matches an escape \u001B. |
-| `\040`	| Matches an ASCII character as octal (up to three digits); numbers with  no leading zero are back references if they have only one digit or if they correspond to a capturing group number. (For more information, see Backreferences.) For example, the character \040 represents a space. |
-| `\x20`	| Matches an ASCII character using hexadecimal representation (exactly two digits). |
-| `\cC`	| Matches an ASCII control character; for example \cC is control-C. |
-| `\u0020`	| Matches a Unicode character using a hexadecimal representation  (exactly four digits). |
-| `\*` | When followed by a character that is not recognized as an escaped character, matches that character. For example, \* is the same as \x2A. |
+| ordinary characters | Characters other than `.$^{[(\|)]}*+?\` match themselves |
+| `\t` | Matches a tab |
+| `\r` | Matches a carriage return |
+| `\v` | Matches a vertical tab |
+| `\f` | Matches a form feed |
+| `\n` | Matches a new line |
+| `\e` | Matches an escape |
+| `\*` | When followed by a character that is not recognized as an escaped character, matches that character |
 
 ## 3. Character Classes
 | Char class | Description |
 | --- | --- |
-| `.`	| Matches any character except \n. If modified by the single line option, a period character matches any character. For more information, see Regular Expression Options. |
-| `[aeiou]`	| Matches any single character included in the specified set of characters. |
-| `[^aeiou]`	| Matches any single character not in the specified set of characters.
-| `[0-9a-fA-F]` |	Use of a hyphen (–) allows specification of contiguous character ranges. |
-| `\p{name}`	| Matches any character in the named character class specified by {name}. Supported names are Unicode groups and block ranges. For example, Ll, Nd, Z, IsGreek, IsBoxDrawing. |
-| `\P{name}`	| Matches text not included in groups and block ranges specified in {name}. |
-| `\w`	| Matches any word character. \w is equivalent to [a-zA-Z_0-9]. |
-| `\W`	| Matches any nonword character. \W is equivalent to [^a-zA-Z_0-9]. |
-| `\s`	| Matches any white-space character. |
-| `\S`	| Matches any non-white-space character. |
-| `\d`	| Matches any decimal digit. |
-| `\D`	| Matches any nondigit. |
+| `\p{name}` | Matches any character in the named character class specified by {name} |
+| `\P{name}` | Matches text not included in groups and block ranges specified in {name} |
+| `\w` | Matches any word character. `\w` is equivalent to `[a-zA-Z_0-9]` |
+| `\W` | Matches any nonword character. `\W` is equivalent to `[^a-zA-Z_0-9]` |
+| `\s` | Matches any white-space character |
+| `\S` | Matches any non-white-space character |
+| `\d` | Matches any decimal digit |
+| `\D` | Matches any nondigit |
+| `\b` | Matches the boundary (or empty string) at the start and end of a word, that is between `\w` and `\W` |
+| `\B` | Matches where `\b` doesn't, the boundary of `\w` characters |
+| `\A` | Matches the expression to its right at the absolute start of a string |
+| `\Z` | Matches the expression to its left at the absolute end of a string |
+
+## 4. Sets
+| Char class | Description |
+| --- | --- |
+| `.`   | Matches any character except `\n` |
+| `[aeiou]` | Matches any single character included in the specified set of characters |
+| `[^aeiou]` | Matches any single character not in the specified set of characters
+| `[0-9a-fA-F]` | Use of a `-` allows specification of contiguous character ranges |
+| `[-a]` |  Matches a or `-` |
+| `[(+*)]` |  Matches `(`, `+`, `*` and `)` |
+
+## 5. Groups
+| Char class | Description |
+| --- | --- |
+| `(...)` | Logical grouping of part of an expression |
